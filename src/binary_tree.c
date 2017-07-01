@@ -6,12 +6,15 @@ bool insert_value_recur(struct binary_tree* root, struct binary_node* node, void
     root->copy_value(node->value, value);
   } else {
     enum compare c = root->compare_value(node->value, value); 
-    if(c == EQ){
-      return false;
-    } else if (c == LT) {
-      return insert_value_recur(root, node->left_node, value);
-    } else {
-      return insert_value_recur(root, node->right_node, value);
+    switch(c) {
+      case EQ:
+        return false;
+        break;
+      case LT:
+        return insert_value_recur(root, node->left_node, value);
+      case GT:
+        return insert_value_recur(root, node->right_node, value);
+      default:
     }
   }
   return true;
