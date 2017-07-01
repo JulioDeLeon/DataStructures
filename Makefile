@@ -2,14 +2,14 @@ OUTPUT_DIR= ./build
 INCLUDE_DIR= ./include
 LIB_DIR= ./lib
 SRC_DIR= ./src
-CC=clang
+CC=gcc
 CFLAGS= -g -Wall
 INCLUDES= -I$(INCLUDE_DIR)
 LIBRARIES= -L$(LIB_DIR)
 TARGET=treasure
 
 binary_tree: $(SRC_DIR)/binary_tree.c
-	$(CC) $(CFLAGS) $(INCLUDES) -shared -o $(LIB_DIR)/$@.so $^
+	$(CC) $(CFLAGS) $(INCLUDES) -fPIC -shared -o $(LIB_DIR)/$@.so $^
 
 $(TARGET): $(SRC_DIR)/main.c
 	$(CC) $(CFLAGS) $(INCLUDES) $(LIBARIES) -o $(OUTPUT_DIR)/$(TARGET) $^
